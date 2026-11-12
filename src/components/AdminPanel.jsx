@@ -16,7 +16,6 @@ export default function AdminPanel({
   setFormDesc,
   handleSaveProduct,
   clearForm,
-  // 💡 จุดแก้ไขบั๊กที่ 1: รับ Props ฟังก์ชันสำหรับส่งไฟล์ภาพสดกลับไปอัปเดตที่ App.jsx
   setSelectedFile 
 }) {
   return (
@@ -69,7 +68,6 @@ export default function AdminPanel({
             />
           </div>
           <div className="md:col-span-3 grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
-            {/* ส่วนของช่องคำอธิบายเมนู (กินพื้นที่ 3 ส่วนใน 4 ส่วนบนจอใหญ่) */}
             <div className="md:col-span-3 space-y-1">
               <label className="text-xs font-bold text-[#805030] block">คำอธิบายเมนูเพิ่มเติม</label>
               <textarea 
@@ -80,8 +78,6 @@ export default function AdminPanel({
                 className="w-full p-2.5 rounded-xl border border-[#FFE0CC] text-sm focus:border-[#FF7F32] focus:outline-none resize-none block" 
               />
             </div>
-
-            {/* ส่วนของปุ่มกด (กินพื้นที่ 1 ส่วนที่เหลือขวาสุด และอยู่แถวเดียวกัน) */}
             <div className="md:col-span-1 flex flex-col md:flex-row justify-end gap-2 h-20.5 items-end pb-0.5">
               {isEditing && (
                 <button 

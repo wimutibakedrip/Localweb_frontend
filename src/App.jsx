@@ -185,7 +185,13 @@ export default function App() {
   
   const handleSaveProduct = async (e) => {
     e.preventDefault(); 
-    if (!formName || !formPrice || !formPieces) return alert("กรุณากรอกข้อมูลให้ครบถ้วน");
+    if (!formName || !formPrice) return alert("กรุณากรอกข้อมูลให้ครบถ้วน");
+    
+    const finalPieces = formPieces === "" || formPieces === null ? 0 : parseInt(formPieces);
+    if (finalPieces < 0) {
+      return alert("จำนวนชิ้นต้องไม่ติดลบ");
+    }
+
     const formData = new FormData();
     formData.append("name", formName); formData.append("category", formCategory);
     formData.append("price", parseFloat(formPrice)); formData.append("pieces", parseInt(formPieces));
