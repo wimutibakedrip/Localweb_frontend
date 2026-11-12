@@ -35,8 +35,9 @@ export default function AdminPanel({
             <select value={formCategory} onChange={(e) => setFormCategory(e.target.value)} className="w-full p-2.5 rounded-xl border border-[#FFE0CC] text-sm focus:border-[#FF7F32] focus:outline-none bg-white">
               <option value="🍰 Cake">🍰 Cake</option>
               <option value="🧀 Cheesecake">🧀 Cheesecake</option>
+              <option value="🍪 Cookies">🍪 Cookies</option>
               <option value="🎂 BirthDay Cake">🎂 BirthDay Cake</option>
-              <option value="🍪 Bread">🍪 Bread</option>
+              <option value="🍞 Bread">🍞 Bread</option>
               <option value="🥤 Beverages">🥤 Beverages</option>
               <option value="🥤 Add-ons">🥤 Add-ons</option>
             </select>

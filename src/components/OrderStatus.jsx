@@ -170,18 +170,11 @@ export default function OrderStatus({
                   <button
                     type="button"
                     disabled={order.status === "สำเร็จ" || order.status === "ยกเลิก"}
-                    onClick={() => loadOrderToCart(order)} 
-                    className={`w-full py-2.5 px-3 rounded-xl text-xs font-bold transition-all border text-center whitespace-nowrap ${
-                      order.status === "สำเร็จ" || order.status === "ยกเลิก" 
-                        ? "bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed" 
-                        : "bg-orange-50 text-orange-700 border-orange-200 hover:bg-orange-100 cursor-pointer shadow-xs"
-                    }`}
-                  >
+                    onClick={() => loadOrderToCart(order)}  className={`w-full py-2.5 px-3 rounded-xl text-xs font-bold transition-all border text-center whitespace-nowrap ${order.status === "สำเร็จ" || order.status === "ยกเลิก" ? "bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed" : "bg-orange-50 text-orange-700 border-orange-200 hover:bg-orange-100 cursor-pointer shadow-xs"}`}>
                     ⚙️ แก้ไขออเดอร์
                   </button>
                 </div>
               </div>
-
             </div>
           ))}
         </div>
