@@ -23,7 +23,7 @@ jobs:
           npm run build
 
       - name: เก็บโฟลเดอร์ dist ไว้ส่งต่อให้ Pi
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: frontend-dist
           path: ./dist
