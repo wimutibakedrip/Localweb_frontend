@@ -1,0 +1,21 @@
+
+@import "tailwindcss";
+
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  /* เลือกเฉพาะส่วนที่ต้องการพิมพ์ (หรือปรับให้ซ่อนส่วนอื่น) */
+  .fixed.inset-0.z-50, .fixed.inset-0.z-50 * {
+    visibility: visible;
+  }
+  .fixed.inset-0.z-50 {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+  }
+}
