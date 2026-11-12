@@ -1,11 +1,11 @@
-name: Build on GitHub and Deploy to Raspberry Pi
+name: Build Frontend and Deploy to Raspberry Pi
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main" ] # หากในเครื่องใช้ master ให้เปลี่ยนเป็น master นะครับ
 
 jobs:
-  # งานที่ 1: ใช้เครื่องเซิร์ฟเวอร์ GitHub (RAM เยอะ) ทำการ Build React
+  # งานที่ 1: ใช้เซิร์ฟเวอร์ GitHub ทำการ Build React + Tailwind
   build-frontend:
     runs-on: ubuntu-latest
     steps:
@@ -18,7 +18,6 @@ jobs:
           node-version: '20'
 
       - name: ติดตั้ง Library และ Build dist
-        working-directory: ./wimuti-frontend # แก้ชื่อโฟลเดอร์ให้ตรงกับโปรเจกต์ของคุณ
         run: |
           npm install
           npm run build
@@ -27,11 +26,11 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: frontend-dist
-          path: ./wimuti-frontend/dist # แก้ชื่อโฟลเดอร์ให้ตรงกับโปรเจกต์ของคุณ
+          path: ./dist
 
-  # งานที่ 2: ให้ Raspberry Pi ดึงไฟล์ dist ที่เสร็จแล้วไปใช้งาน และอัปเดต FastAPI
+  # งานที่ 2: ให้ Raspberry Pi ดึงไฟล์ dist ไปวางใน Nginx
   deploy-to-pi:
-    needs: build-frontend # รอให้งาน Build ด้านบนเสร็จก่อนถึงจะเริ่มทำ
+    needs: build-frontend
     runs-on: self-hosted
     steps:
       - name: ดาวน์โหลดโฟลเดอร์ dist ที่ Build เสร็จแล้ว
@@ -43,10 +42,8 @@ jobs:
       - name: นำไฟล์หน้าเว็บไปวางใน Nginx
         run: |
           sudo rm -rf /var/www/wimuti-frontend/*
-          sudo cp -r ./dist/* /var/www/wimuti-frontend
-          sudo chown -R www-data:www-data /var/www/wimuti-frontend
-          sudo chmod -R 755 /var/www/wimuti-frontend
-          sudo sudo systemctl restart nginx
+          sudo cp -r ./dist/* /var/www/wimuti-frontend/
+
 
 
 
