@@ -244,7 +244,9 @@ export default function App() {
             <div className="flex space-x-1">
               <button onClick={() => setActiveTab('shop')} className={`px-4 py-2 rounded-xl text-sm font-semibold transition ${activeTab === 'shop' ? 'bg-orange-500 text-white shadow-sm' : 'text-stone-600 hover:bg-orange-50/50 hover:text-orange-600'}`}>🧁 หน้าร้านค้า</button>
               <button onClick={() => setActiveTab('tracking')} className={`px-4 py-2 rounded-xl text-sm font-semibold transition ${activeTab === 'tracking' ? 'bg-orange-500 text-white shadow-sm' : 'text-stone-600 hover:bg-orange-50/50 hover:text-orange-600'}`}>📦 ติดตามออเดอร์</button>
-              <button onClick={() => setActiveTab('product-tracking')} className={`px-4 py-2 rounded-xl text-sm font-semibold transition ${activeTab === 'product-tracking' ? 'bg-orange-500 text-white shadow-sm' : 'text-stone-600 hover:bg-orange-50/50 hover:text-orange-600'}`}>🧺 ติดตามสินค้า</button>
+              {role !== 'admin' && (
+                  <button onClick={() => setActiveTab('product-tracking')} className={`px-4 py-2 rounded-xl text-sm font-semibold transition ${activeTab === 'product-tracking' ? 'bg-orange-500 text-white shadow-sm' : 'text-stone-600 hover:bg-orange-50/50 hover:text-orange-600'}`}>🧺 ติดตามสินค้า</button>
+              )}
               {role === 'admin' && (
                 <>
                   <button onClick={() => setActiveTab('sales')} className={`px-4 py-2 rounded-xl text-sm font-semibold transition ${activeTab === 'sales' ? 'bg-orange-500 text-white shadow-sm' : 'text-stone-600 hover:bg-orange-50/50 hover:text-orange-600'}`}>📊 รายงานยอดขาย</button>
