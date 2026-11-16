@@ -39,7 +39,7 @@ export default function App() {
     paymentMethod, setPaymentMethod, discountType, setDiscountType, discountValue, customDiscountInput, 
     setCustomDiscountInput, getSubtotalPrice, getDiscountAmount, getNetPrice, handleQuickDiscount, 
     applyCustomDiscount, addToCart, removeFromCart, handleCheckout,
-    editingOrderId, setEditingOrderId, loadOrderToCart
+    editingOrderId, setEditingOrderId, editingOrderCode, loadOrderToCart
   } = useCart(bakeryMenu, setBakeryMenu, API_URL, setActiveTab, () => fetchOrders(selectedDate));
   useEffect(() => {
     fetchProducts();
@@ -377,7 +377,7 @@ export default function App() {
         removeFromCart={removeFromCart} discountType={discountType} setDiscountType={setDiscountType} discountValue={discountValue} 
         customDiscountInput={customDiscountInput} setCustomDiscountInput={setCustomDiscountInput} handleQuickDiscount={handleQuickDiscount} 
         applyCustomDiscount={applyCustomDiscount} handleCheckout={handleCheckout} subtotalPrice={getSubtotalPrice()} 
-        discountAmount={getDiscountAmount()} netPrice={getNetPrice()} editingOrderId={editingOrderId}
+        discountAmount={getDiscountAmount()} netPrice={getNetPrice()} editingOrderId={editingOrderId} editingOrderCode={editingOrderCode}
       />
       <CakeModal product={selectedProduct} onClose={() => setSelectedProduct(null)} onConfirm={(text) => { addToCart(selectedProduct, text); setSelectedProduct(null); }} customText={customText} setCustomText={setCustomText} />
       <OrderDetailModal order={selectedOrderDetails} onClose={() => setSelectedOrderDetails(null)} /> 

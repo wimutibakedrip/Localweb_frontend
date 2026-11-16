@@ -7,6 +7,7 @@ export default function OrderDetailModal({ order, onClose }) {
   }
 
   const orderId = order.id ?? 'ไม่ระบุไอดี';
+  const orderCode = order.orderid ?? 'ไม่ระบุไอดี';
   const customerName = order.customer_name || 'ไม่ระบุชื่อ (ลูกค้าหน้าร้าน)';
   const orderStatus = order.status || 'รอดำเนินการ';
   const totalPrice = order.total_price ?? 0;
@@ -39,7 +40,7 @@ export default function OrderDetailModal({ order, onClose }) {
         {/* ส่วนหัวหน้าต่าง */}
         <div className="p-6 bg-[#FFF0E6] border-b-2 border-[#FFE0CC] flex justify-between items-center">
           <div>
-            <h3 className="text-lg font-black text-[#4A2810]">📄 รายละเอียดออเดอร์ #{orderId}</h3>
+            <h3 className="text-lg font-black text-[#4A2810]">📄 รายละเอียดออเดอร์ #{orderCode}</h3>
             <p className="text-xs text-gray-500 mt-0.5">สั่งซื้อเมื่อ: {formattedDate}</p>
           </div>
           <button 
@@ -86,7 +87,7 @@ export default function OrderDetailModal({ order, onClose }) {
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-100">
-                {/* 🆕 นำรายการมา map แปลงโครงสร้างชั่วคราวก่อนเพื่อเอาชื่อสินค้ามาใช้จัดเรียง */}
+                {/* นำรายการมา map แปลงโครงสร้างชั่วคราวก่อนเพื่อเอาชื่อสินค้ามาใช้จัดเรียง */}
                 {orderItems
                   .map((item) => {
                     if (!item) return null;
@@ -103,7 +104,7 @@ export default function OrderDetailModal({ order, onClose }) {
                   })
                   .filter(Boolean) // กรองค่า null ออก
                   .sort((a, b) => {
-                    // 🆕 จัดเรียงตามชื่อสินค้าภาษาไทย (ก-ฮ) เพื่อง่ายต่อการตรวจ
+                    // จัดเรียงตามชื่อสินค้าภาษาไทย (ก-ฮ) เพื่อง่ายต่อการตรวจ
                     const nameCompare = a._computedName.localeCompare(b._computedName, 'th');
                     if (nameCompare !== 0) return nameCompare;
                     // ถ้าชื่อเหมือนกัน ให้เรียงตามข้อความพิเศษต่อ (ถ้ามี)

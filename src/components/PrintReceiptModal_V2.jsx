@@ -97,7 +97,7 @@ export default function PrintReceiptModal_V2({ order, isOpen, onClose }) {
           <div className="border-t border-b border-dashed border-black py-1.5 space-y-0.5">
             <div className="flex justify-between">
               <span>Order:</span>
-              <span className="font-bold">#{order.id}</span>
+              <span className="font-bold">#{order.orderid}</span>
             </div>
             <div className="flex justify-between">
               <span>เวลา:</span>

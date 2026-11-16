@@ -12,6 +12,7 @@ export default function useCart(bakeryMenu, setBakeryMenu, API_URL, setActiveTab
   
   // ไอดีออเดอร์ที่กำลังแก้ไขอยู่ (ถ้าเป็น null แปลว่าโหมดสั่งซื้อปกติ)
   const [editingOrderId, setEditingOrderId] = useState(null);
+  const [editingOrderCode, setEditingOrderCode] = useState("");
 
   const getSubtotalPrice = () => cart.reduce((sum, item) => sum + (item.price * item.count), 0);
   const getDiscountAmount = () => discountType === 'percent' ? (getSubtotalPrice() * discountValue) / 100 : discountValue;
@@ -89,10 +90,11 @@ export default function useCart(bakeryMenu, setBakeryMenu, API_URL, setActiveTab
     setPaymentMethod(order.payment_method || "โอน");
     setDiscountType("amount");
     setDiscountValue(order.discount_price || 0);
-    setEditingOrderId(order.id); // ล็อกไอดีบิลเก่าเอาไว้
+    setEditingOrderId(order.id);
+    setEditingOrderCode(order.orderid || `#${order.id}`);
     setIsCartOpen(true); 
     setActiveTab('shop');
-    alert(`ดึงข้อมูลออเดอร์ #${order.id} เข้าสู่ตะกร้าแล้ว สามารถเพิ่ม/ลดสินค้าได้ตามต้องการ`);
+    alert(`ดึงข้อมูลออเดอร์ ${order.orderid || '#' + order.id} เข้าสู่ตะกร้าแล้ว สามารถเพิ่ม/ลดสินค้าได้ตามต้องการ`);
   };
 
   // --------- ฟังค์ชั่นชำระเงิน --------------------------------------------------------------------------
@@ -130,6 +132,7 @@ export default function useCart(bakeryMenu, setBakeryMenu, API_URL, setActiveTab
         setIsCartOpen(false);
         setPaymentMethod("โอน");
         setEditingOrderId(null); // ล้างไอดีแก้ไขทิ้ง
+        setEditingOrderCode("");
         setActiveTab('tracking'); 
         fetchOrders();
       } else { 
@@ -146,6 +149,6 @@ export default function useCart(bakeryMenu, setBakeryMenu, API_URL, setActiveTab
     paymentMethod, setPaymentMethod, discountType, setDiscountType, discountValue, customDiscountInput, 
     setCustomDiscountInput, getSubtotalPrice, getDiscountAmount, getNetPrice, handleQuickDiscount, 
     applyCustomDiscount, addToCart, removeFromCart, handleCheckout,
-    editingOrderId, loadOrderToCart
+    editingOrderId, editingOrderCode, loadOrderToCart
   };
 }

@@ -22,7 +22,8 @@ export default function CartDrawer({
   subtotalPrice,
   discountAmount,
   netPrice,
-  editingOrderId
+  editingOrderId,
+  editingOrderCode
 }) {
   if (!isCartOpen) return null;
 
@@ -35,7 +36,7 @@ export default function CartDrawer({
         
         {/* Header ตะกร้า */}
         <div className="p-4 border-b-2 border-[#FFE0CC] flex justify-between items-center bg-[#FFF0E6]">
-          <h2 className="text-lg font-bold text-[#4A2810]">{isEditMode ? `⚙️ กำลังแก้ไขออเดอร์ #${editingOrderId}` : "🛒 รายการที่เลือกในตะกร้า"}</h2>
+          <h2 className="text-lg font-bold text-[#4A2810]">{isEditMode ? `⚙️ กำลังแก้ไขออเดอร์ #${editingOrderCode}` : "🛒 รายการที่เลือกในตะกร้า"}</h2>
           {/* เพิ่มใหม่: ป้ายแสดงจำนวนรายการที่อยู่ในตะกร้าปัจจุบัน */}
           {cart.length > 0 && (
             <span className="bg-[#FF5500] text-white text-xs font-black px-2.5 py-1 rounded-full shadow-sm animate-pulse">
