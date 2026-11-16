@@ -97,7 +97,7 @@ export default function OrderStatus({
                 <div className="space-y-2 flex-1 w-full">
                   <div className="flex items-center gap-3">
                     <span className="text-xs font-bold bg-[#FFE0CC] text-[#FF7F32] px-2.5 py-1 rounded-lg">
-                      Order #{order.orderid}
+                      Order {order.orderid ? order.orderid : `#${order.id}`}
                     </span>
                     <span className="font-black text-sm text-[#4A2810] flex items-center gap-1">
                       👤 ลูกค้า: {order.customer_name || "ไม่ระบุชื่อ/หน้าร้าน"}
