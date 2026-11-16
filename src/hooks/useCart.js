@@ -18,7 +18,18 @@ export default function useCart(bakeryMenu, setBakeryMenu, API_URL, setActiveTab
   const getDiscountAmount = () => discountType === 'percent' ? (getSubtotalPrice() * discountValue) / 100 : discountValue;
   const getNetPrice = () => Math.max(0, getSubtotalPrice() - getDiscountAmount());
   const handleQuickDiscount = (pct) => { setDiscountType('amount'); setDiscountValue(pct); };
-  const applyCustomDiscount = () => { setDiscountValue(parseFloat(customDiscountInput) || 0); };
+
+  // const applyCustomDiscount = () => { setDiscountValue(parseFloat(customDiscountInput) || 0); };
+  const applyCustomDiscount = () => { 
+    let val = parseFloat(customDiscountInput) || 0;
+    if (val < 0) val = 0;
+    if (discountType === 'percent' && val > 100) {
+      alert("ส่วนลดเปอร์เซ็นต์ต้องไม่เกิน 100%");
+      val = 100;
+      setCustomDiscountInput("100");
+    }
+    setDiscountValue(val); 
+  };
 
   const addToCart = (product, text = "") => {
     const currentMenuProduct = bakeryMenu.find(p => p.id === product.id);
@@ -104,7 +115,7 @@ export default function useCart(bakeryMenu, setBakeryMenu, API_URL, setActiveTab
     const orderData = {     
       customer_name: customerName,
       notes: orderNotes,      
-      discount_price: parseFloat(discountValue) || 0.0,
+      discount_price: parseFloat(getDiscountAmount()) || 0.0,
       payment_method: paymentMethod,
       items: cart.map(item => ({ product_id: item.id, quantity: item.count })) 
     };
