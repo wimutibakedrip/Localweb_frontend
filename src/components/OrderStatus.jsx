@@ -169,7 +169,7 @@ export default function OrderStatus({
                     <div className="w-full">
                       <button
                         type="button"
-                        disabled={isLocked}
+                        disabled={isCompleted}
                         onClick={() => loadOrderToCart(order)}  
                         className={`w-full py-2.5 px-3 rounded-xl text-xs font-bold transition-all border text-center whitespace-nowrap ${isLocked ? "bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed" : "bg-orange-50 text-orange-700 border-orange-200 hover:bg-orange-100 cursor-pointer shadow-xs"}`}
                       >
