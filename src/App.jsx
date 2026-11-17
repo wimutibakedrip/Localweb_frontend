@@ -21,12 +21,12 @@ export default function App() {
   const [salesSummary, setSalesSummary] = useState({ total_revenue: 0, total_cash: 0, total_transfer: 0, status_distribution: {}, top_products: [] });
   const [isTrackingLoading, setIsTrackingLoading] = useState(false);
   const [selectedOrderDetails, setSelectedOrderDetails] = useState(null);
-  const [adminPassword, setAdminPassword] = useState("123456");
+  const [adminPassword, setAdminPassword] = useState("");
   const [loginError, setLoginError] = useState("");
   const [showLoginModal, setShowLoginModal] = useState(false); 
   const [bakeryMenu, setBakeryMenu] = useState([]);
   const [printOrderData, setPrintOrderData] = useState(null);
-
+  
   // State สำหรับเก็บวันที่ดึงรายงาน
   const [selectedDate, setSelectedDate] = useState(() => {
     const today = new Date();
@@ -327,7 +327,8 @@ export default function App() {
             isTrackingLoading={isTrackingLoading} setSelectedOrderDetails={setSelectedOrderDetails}
             handleUpdateOrderStatus={handleUpdateOrderStatus}
             loadOrderToCart={loadOrderToCart} 
-            onPrintOrder={setPrintOrderData}            
+            onPrintOrder={setPrintOrderData} 
+            role={setRole}           
           />
         )}
         {activeTab === 'product-tracking' && (
