@@ -328,7 +328,7 @@ export default function App() {
             handleUpdateOrderStatus={handleUpdateOrderStatus}
             loadOrderToCart={loadOrderToCart} 
             onPrintOrder={setPrintOrderData} 
-            role={setRole}           
+            role={role}           
           />
         )}
         {activeTab === 'product-tracking' && (
