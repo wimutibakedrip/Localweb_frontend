@@ -36,7 +36,7 @@ export default function CartDrawer({
         
         {/* Header ตะกร้า */}
         <div className="p-4 border-b-2 border-[#FFE0CC] flex justify-between items-center bg-[#FFF0E6]">
-          <h2 className="text-lg font-bold text-[#4A2810]">{isEditMode ? `⚙️ กำลังแก้ไขออเดอร์ #${editingOrderCode}` : "🛒 รายการที่เลือกในตะกร้า"}</h2>
+          <h2 className="text-lg font-bold text-[#4A2810]">{isEditMode ? `⚙️ ออเดอร์ #${editingOrderCode}` : "🛒 รายการที่เลือกในตะกร้า"}</h2>
           {/* เพิ่มใหม่: ป้ายแสดงจำนวนรายการที่อยู่ในตะกร้าปัจจุบัน */}
           {cart.length > 0 && (
             <span className="bg-[#FF5500] text-white text-xs font-black px-2.5 py-1 rounded-full shadow-sm animate-pulse">
@@ -186,7 +186,7 @@ export default function CartDrawer({
             </div>
             
             <button type="button" onClick={handleCheckout} className="w-full bg-[#FF5500] hover:bg-[#CC4400] text-white py-3 rounded-xl font-bold text-center text-sm shadow-md transition-colors cursor-pointer mt-2 block">
-              {isEditMode ? "💾 บันทึกการแก้ไขออเดอร์" : "💳 ดำเนินการชำระเงิน"}              
+              {isEditMode ? "💾 บันทึกแก้ไขออเดอร์" : "💳 ดำเนินการชำระเงิน"}              
             </button>
           </div>
         )}
